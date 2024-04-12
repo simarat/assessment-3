@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300');
+
+
+:root {
+  --light: #CDF6FA;
+  --bg_1: #111E25;
+  --bg_2: #111111;
+}
+
+
+header {
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	padding: 1.5rem;
+}
+nav {
+	width: 100%;
+	background-color: rgba(76, 76, 76, 0.36);
+	color: black;
+	padding: 10px 0;
+	text-align: center;
+	display: flex;
+	justify-content: space-around;
+	border-radius: 5rem;
+	backdrop-filter: blur(4px);
+	height: 45px;
+	padding-top: 30px;
+}
+
+
+
+
+nav ul { 
+
+	padding: 0; 
+	list-style: none; 
+	display: table;
+	width: 80%;
+	text-align: center;
+  }
+ nav li { 
+	display: table-cell; 
+	position: relative; 
+
+  }
+ nav a {
+	color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+	letter-spacing: 0.15em;
+	
+	display: inline-block;
+	position: relative;
+  }
+ nav a:after {    
+	background: none repeat scroll 0 0 transparent;
+	bottom: 0;
+	content: "";
+	display: block;
+	height: 2px;
+	left: 50%;
+	position: absolute;
+	background: #fff;
+	transition: width 0.3s ease 0s, left 0.3s ease 0s;
+	width: 0;
+  }
+ nav a:hover:after { 
+	width: 100%; 
+	left: 0; 
+  }
+  @media screen and (max-height: 300px) {
+nav ul {
+	  margin-top: 40px;
+	}
+  }
+
+  a{
+	text-decoration: none;
+  }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  color: var(--light);
+  font-family: "Lato", sans-serif;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+#div1 {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    
+  }
+  #page2 {
+    align-items: center;
+    position: relative;
+    display: block;
+    justify-content: left;
+    align-items: baseline;
+    padding: 20px;
+    height: 100vh; 
+     background-image: url(7D42mV5.jpg);
+    background-size: cover;
+}   
+p{
+    font-size: large;
+}
+#span1{
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 1);
+}

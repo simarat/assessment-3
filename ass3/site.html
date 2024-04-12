@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <header>
+		<nav>
+			<ul>
+				<li><a href="#portfolio">About Me</a></li>
+				<li><a href="#press">Skills</a></li>
+				<li><a href="#shop">My Socials</a></li>
+				<li><a href="#about">Feedback</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<section id="portfolio">
+		<a href="about.html"><h2 data-animate="true" >About Me</h2></a>
+	</section>
+	
+	<section id="press">
+		<a href="skills.html"><h2 data-animate="true">My Skills</h2></a>
+	</section>
+	
+	<section id="shop">
+		<a href="socials.html"><h2 data-animate="true">My Socials</h2></a>
+	</section>
+	
+	<section id="about">
+		<h2 data-animate="true">Feedback</h2>
+	</section>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		class IntersectionObserverList {
+			constructor() {
+				this.mapping = new Map();
+				this.observer = new IntersectionObserver(
+					(entries) => {
+						for (var entry of entries) {
+							var callback = this.mapping.get(entry.target);
+
+							callback && callback(entry.isIntersecting);
+						}
+					},
+					{
+						rootMargin: "300px 0px 300px 0px"
+					}
+				);
+			}
+			add(element, callback) {
+				this.mapping.set(element, callback);
+				this.observer.observe(element);
+			}
+			ngOnDestroy() {
+				this.mapping.clear();
+				this.observer.disconnect();
+			}
+			remove(element) {
+				this.mapping.delete(element);
+				this.observer.unobserve(element);
+			}
+		}
+
+		const observer = new IntersectionObserverList();
+
+		$(window).mousemove(function (e) {
+			$(".ring").css(
+				"transform",
+				`translateX(calc(${e.clientX}px - 1.25rem)) translateY(calc(${e.clientY}px - 1.25rem))`
+			);
+		});
+
+		$('[data-animate="true"]').each(function () {
+			var element = this;
+			observer.add(element, function (isIntersecting) {
+				if (isIntersecting) {
+					$(element).addClass("animate-slide-down")
+				} else {
+					$(element).removeClass("animate-slide-down")
+				}
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Feedback Form</title>
+            
+        <link rel="stylesheet" href="form.css">
+        </head>
+        <body>
+        
+        <div class="wrap">
+          <div class="feedback">
+            <h1>Feedback Form</h1>
+            <form id="feedbackForm">
+              <div class="row">
+                <input type="text" id="name" class="row_input" required>
+                <label for="name" class="label">Enter your name</label>
+              </div>
+              <div class="row">
+                <input type="email" id="email" class="row_input" required>
+                <label for="email" class="label">Your email address</label>
+              </div>
+              <div class="row">
+                <textarea name="message" id="message" class="row_input" cols="30" rows="5" required></textarea>
+                <label for="message" class="label">Message</label>
+              </div>
+              <div class="row">
+                <div class="button">
+                  <button type="submit">Submit</button>
+                </div>
+              </div>
+            </form>
+            <div id="feedbackMessage"></div>
+          </div>
+        </div>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const form = document.getElementById("feedbackForm");
+                const feedbackMessage = document.getElementById("feedbackMessage");
+        
+                form.addEventListener("submit", function(event) {
+                    event.preventDefault(); 
+        
+                    const name = document.getElementById("name").value.trim();
+                    const email = document.getElementById("email").value.trim();
+                    const message = document.getElementById("message").value.trim();
+        
+                    if (name === "" || email === "" || message === "") {
+                        feedbackMessage.textContent = "Please fill in all fields.";
+                        return;
+                    }
+        
+
+                    saveFormDataToFile(name, email, message);
+        
+                    feedbackMessage.textContent = "Thank you for your feedback, " + name + "!";
+                    form.reset();
+                });
+        
+                function saveFormDataToFile(name, email, message) {
+                    const formDataBlob = new Blob([`Name: ${name}\nEmail: ${email}\nMessage: ${message}`], { type: 'text/plain' });
+        
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = window.URL.createObjectURL(formDataBlob);
+                    downloadLink.download = 'feedback.txt';
+        
+
+                    downloadLink.click();
+                }
+            });
+        </script>
+        
+        </body>
+        </html>
+        
